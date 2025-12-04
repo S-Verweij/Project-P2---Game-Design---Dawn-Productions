@@ -1,39 +1,49 @@
-// VIEW – alles wat met de HTML te maken heeft
+class View {
+    constructor(model, canvasId) {
+        this.model = model;
 
-const View = {
-    updatePlayerPosition() {
-        const playerEl = document.getElementById("player");
-        const laneIndex = Model.player.lane - 1;
-        playerEl.style.top = (laneIndex * Model.laneHeight) + "px";
-    },
+        this.canvas = document.getElementById(canvasId);
+        this.ctx = this.canvas.getContext("2d");
 
-    updateTimer() {
-        const m = Math.floor(Model.timeLeft / 60);
-        const s = Model.timeLeft % 60;
-        document.getElementById("timer").innerText =
-            `${m}:${s.toString().padStart(2, '0')}`;
-    },
-
-    updateScore() {
-        document.getElementById("score").innerText =
-            "Score: " + Model.score;
-    },
-
-    createObstacleElement(obstacle) {
-        const img = document.createElement("img");
-        img.src = obstacle.src;
-        img.classList.add("obstacle");
-        img.style.position = "absolute";
-        img.style.right = "-100px";
-        img.style.top = (obstacle.lane - 1) * Model.laneHeight + "px";
-        img.style.width = "80px";
-        img.dataset.id = obstacle.id;
-
-        document.getElementById("game").appendChild(img);
-    },
-
-    removeObstacleElement(id) {
-        const el = document.querySelector(`img[data-id="${id}"]`);
-        if (el) el.remove();
+        this.assets = {};
+        this.loadAssets();
     }
-};
+
+    loadAssets() {
+        this.loadImage("player", "Assets/Player1Car.png");
+        this.loadImage("CopBarricade", "Assets/CopBarricade.png");
+        this.loadImage("CopBarricade2", "Assets/CopBarricade2.png");
+        this.loadImage("CopBarricade3", "Assets/CopBarricade3.png");
+        this.loadImage("Stop", "Assets/Stop.png");
+    }
+
+    loadImage(key, src) {
+        const img = new Image();
+        img.src = src;
+        this.assets[key] = img;
+    }
+
+    draw() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.drawPlayer();
+        this.drawObstacles();
+    }
+
+    drawPlayer() {
+        const y = this.model.lanesY[this.model.playerLane];
+        const x = this.model.playerX;
+
+        const sprite = this.assets["player"];
+        this.ctx.drawImage(sprite, x, y, this.model.playerWidth, this.model.playerHeight);
+    }
+
+    drawObstacles() {
+        for (let o of this.model.obstacles) {
+            const y = this.model.lanesY[o.lane];
+            const sprite = this.assets[o.type];
+
+            this.ctx.drawImage(sprite, o.x, y, o.width, o.height);
+        }
+    }
+}

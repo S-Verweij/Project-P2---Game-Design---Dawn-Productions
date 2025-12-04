@@ -1,32 +1,63 @@
-// CONTROLLER – input en game logica
+class Controller {
+    constructor(model, view) {
+        this.model = model;
+        this.view = view;
 
-const Controller = {
-    movePlayerUp() {
-        if (Model.player.lane > 1) {
-            Model.player.lane--;
-            View.updatePlayerPosition();
-        }
-    },
-
-    movePlayerDown() {
-        if (Model.player.lane < Model.laneCount) {
-            Model.player.lane++;
-            View.updatePlayerPosition();
-        }
-    },
+        this.lastFrame = 0;
+        this.spawnInterval = 1500; // ms
+    }
 
     startGame() {
-        if (Model.gameRunning) return;
-        Model.gameRunning = true;
-
-        Model.score = 0;
-        Model.timeLeft = 180;
-        View.updateScore();
-        View.updateTimer();
-        View.updatePlayerPosition();
-
-        StartGame.startTimer();
-        StartGame.gameLoop();
-        StartGame.spawnLoop();
+        this.model.reset();
+        this.model.gameRunning = true;
+        this.loop(0);
     }
-};
+
+    restartGame() {
+        this.model.reset();
+        this.model.gameRunning = true;
+        document.getElementById("restart-btn").classList.add("hidden");
+        this.loop(0);
+    }
+
+    moveUp() {
+        if (this.model.playerLane > 0) this.model.playerLane--;
+    }
+
+    moveDown() {
+        if (this.model.playerLane < 2) this.model.playerLane++;
+    }
+
+    loop(timestamp) {
+        if (!this.model.gameRunning) return;
+        
+        const delta = timestamp - this.lastFrame;
+        this.lastFrame = timestamp;
+
+        // Spawn logic
+        if (timestamp - this.model.lastSpawnTime > this.spawnInterval) {
+            this.model.spawnObstacle();
+            this.model.lastSpawnTime = timestamp;
+        }
+
+        // Update model
+        this.model.update();
+        this.model.checkCollision();
+
+        // Score
+        this.model.score += delta / 1000;
+        document.getElementById("score").innerText =
+            "Score: " + Math.floor(this.model.score);
+
+        // Render
+        this.view.draw();
+
+        // Game over?
+        if (this.model.gameOver) {
+            document.getElementById("restart-btn").classList.remove("hidden");
+            return;
+        }
+
+        requestAnimationFrame(this.loop.bind(this));
+    }
+}
