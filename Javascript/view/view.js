@@ -11,6 +11,7 @@ class View {
 
     loadAssets() {
         this.loadImage("player", "Assets/Player1Car.png");
+        this.loadImage("player2", "Assets/Player2Car.png");
         this.loadImage("CopBarricade", "Assets/CopBarricade.png");
         this.loadImage("CopBarricade2", "Assets/CopBarricade2.png");
         this.loadImage("CopBarricade3", "Assets/CopBarricade3.png");

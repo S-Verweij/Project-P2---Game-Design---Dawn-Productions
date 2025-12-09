@@ -10,6 +10,7 @@ class Controller {
     startGame() {
         this.model.reset();
         this.model.gameRunning = true;
+        this.model.lastSpawnTime = performance.now() + 1000;
         this.loop(0);
     }
 
@@ -17,6 +18,7 @@ class Controller {
         this.model.reset();
         this.model.gameRunning = true;
         document.getElementById("restart-btn").classList.add("hidden");
+        this.model.lastSpawnTime = performance.now() + 1000;
         this.loop(0);
     }
 

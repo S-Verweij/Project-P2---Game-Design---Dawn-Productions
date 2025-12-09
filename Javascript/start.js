@@ -21,7 +21,12 @@ window.addEventListener("load", () => {
     });
 
     document.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowUp") controller.moveUp();
-        if (e.key === "ArrowDown") controller.moveDown();
-    });
+    if (e.key === "w" || e.key === "W") {
+        controller.moveUp();
+    }
+    if (e.key === "s" || e.key === "S") {
+        controller.moveDown();
+    }
+});
+
 });

@@ -17,8 +17,8 @@ class Model {
     }
 
     reset() {
-        this.playerLane = 1; // middle lane
-        this.lanesY = [50, 170, 290]; // 3 fixed lanes
+        this.playerLane = 1; // middelste baan start positie
+        this.lanesY = [50, 170, 290]; // 3 gefixde banen
         this.playerX = 120;
         this.playerWidth = 70;
         this.playerHeight = 50;
@@ -32,25 +32,35 @@ class Model {
     }
 
     spawnObstacle() {
-        const types = ["CopBarricade", "CopBarricade2", "Copbarricade3", "Stop"];
+        const types = ["CopBarricade", "CopBarricade2", "CopBarricade3", "CopBarricade4", "CopBarricade5", "Stop"];
         const pick = types[Math.floor(Math.random() * types.length)];
 
         if (pick === "CopBarricade") {
-            this.obstacles.push(new Obstacle("CopBarricade", 0, 800, 4));
-        }
-
-        else if (pick === "CopBarricade3") {
-            this.obstacles.push(new Obstacle("CopBarricade3", 1, 800, 4))
+            this.obstacles.push(new Obstacle("CopBarricade", 0, 800, 20));
         }
 
         else if (pick === "CopBarricade2") {
-            this.obstacles.push(new Obstacle("CopBarricade2", 2, 800, 4));
+            this.obstacles.push(new Obstacle("CopBarricade2", 2, 800, 20));
         }
-        
+
+        else if (pick === "CopBarricade3") {
+            this.obstacles.push(new Obstacle("CopBarricade2", 1, 800, 20))
+        }
+
+        else if (pick === "CopBarricade4") {
+            this.obstacles.push(new Obstacle("CopBarricade", 0, 800, 20))
+            this.obstacles.push(new Obstacle("CopBarricade2", 1, 800, 20));
+        }
+
+        else if (pick === "CopBarricade5") {
+            this.obstacles.push(new Obstacle("CopBarricade", 1, 800, 20))
+            this.obstacles.push(new Obstacle("CopBarricade2", 2, 800, 20));
+        }
+
         else if (pick === "Stop") {
-            this.obstacles.push(new Obstacle("CopBarricade", 0, 800, 4, true));
-            this.obstacles.push(new Obstacle("Stop", 1, 800, 4, false));
-            this.obstacles.push(new Obstacle("CopBarricade2", 2, 800, 4, true));
+            this.obstacles.push(new Obstacle("CopBarricade", 0, 800, 20, true));
+            this.obstacles.push(new Obstacle("Stop", 1, 800, 20, false));
+            this.obstacles.push(new Obstacle("CopBarricade2", 2, 800, 20, true));
         }
     }
 

@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+:root {
+    --background-color-button: orange;
+    --color-button: black;
+    --background-color-main: #333; 
+}
+
 body {
     margin: 0;
     background: #111;
@@ -34,10 +40,10 @@ button.hidden {
     display: none;
 }
 
-#game-container {
+.game-container {
     margin-top: 20px;
     border: 3px solid #444;
-    background: #222;
+    background-color: #333;
 }
 
 #controls {
@@ -53,3 +59,5 @@ canvas {
     background: #333;
     display: block;
 }
+
+
