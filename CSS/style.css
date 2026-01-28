@@ -1,0 +1,136 @@
+body {
+    margin: 0;
+    background: var(--background-body-color);
+    font-family: Arial, sans-serif;
+    color: white;
+    text-align: center;
+}
+
+:root {
+    --background-body-color: #5A5353;
+    --btn-background-color: #413d3d;
+    --player-background-color: #2d2f2a;
+    --point-background-color: #272426;
+   --bet-background-color: #000000d3;
+}
+
+.nameBtn {
+    background: var(--btn-background-color);
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 6px;
+    font-size: 11px;
+}
+
+.homeBtn {
+    background: var(--btn-background-color);
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 6px;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.players {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.player {
+    width: 48%;
+    padding: 15px;
+    background: rgba(0,0,0,0.15);
+    border-radius: 12px;
+}
+
+.player h2 {
+    margin-top: 0;
+    padding: 8px 20px;
+    background: var(--player-background-color);
+    color: black;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.points-box {
+    background: var(--point-background-color);
+    color: black;
+    padding: 12px;
+    border-radius: 8px;
+    width: 70%;
+    margin: 15px auto;
+    font-weight: bold;
+    text-align: center;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: 20px 0;
+}
+
+.card {
+    width: 150px;
+    height: 210px;
+    background: #fff;
+    color: red;
+    border-radius: 10px;
+    display: flex;
+    font-size: 60px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.25);
+}
+
+input[type="number"] {
+    margin-top: 10px;
+    padding: 12px;
+    width: 60%;
+    background: var(--bet-background-color);
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: beige;
+}
+
+.guess-buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.start-button {
+    margin-top: 30px;
+}
+
+.message {
+    margin: 20px auto;
+    border:2px solid rgb(1, 54, 49);
+    text-align: center;
+    padding: 10px;
+    width: 300px;
+}
+
+.btn{
+border-radius: 15%;
+background-color: #000a21;
+color: white;
+font-family: 'Courier New', Courier, monospace;
+}
