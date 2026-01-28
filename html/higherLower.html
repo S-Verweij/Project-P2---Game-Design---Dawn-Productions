@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HigherLower</title>
+    <link rel="stylesheet" href="/CSS/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <a class="homeBtn" href="/html/index.html">terug naar home</a>
+      <button class="nameBtn">Verander je naam</button>
+
+      <div class="players">
+        <div class="player">
+          <h2 class="name">Player 1</h2>
+
+          <div class="points-box">Points: 0</div>
+
+          <div class="cards">
+            <div class="card">?</div>
+          </div>
+
+          <input type="number" placeholder="place bet" id="inzet" />
+
+          <div class="guess-buttons">
+            <button class="btn">Higher</button>
+            <button class="btn">Lower</button>
+          </div>
+        </div>
+
+        <div class="player">
+          <h2>Computer</h2>
+
+          <div class="points-box">Points: 0</div>
+
+          <div class="cards">
+            <div class="card">?</div>
+          </div>
+
+          <input type="number" placeholder="place bet" />
+
+          <div class="guess-buttons">
+            <button class="btn">Higher</button>
+            <button class="btn">Lower</button>
+          </div>
+        </div>
+      </div>
+      <div class="message">
+        hoger-lager</div>
+      <div class="start-button">
+        <button class="btn">START</button>
+      </div>
+    </div>
+
+    <script src="/Javascript/model/higherlower.js" defer></script>
+    <script src="/Javascript/view/view.js" defer></script>
+    <script src="/Javascript/controller/controller.js" defer></script>
+    <script src="/Javascript/view/start.js" defer></script>
+  </body>
+</html>
